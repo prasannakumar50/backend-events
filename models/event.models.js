@@ -30,7 +30,7 @@ const eventSchema = new mongoose.Schema({
         enum:["Online", "Offline"]
     },
     date: {
-        type: Date,
+        type: String,
         required: true,             
     },
 

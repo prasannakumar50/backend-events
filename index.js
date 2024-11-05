@@ -87,6 +87,31 @@ app.get("/events", async(req, res)=>{
     }
 })
 
+async function updateEvent(eventId, dataToUpdate){
+  try{
+     const updatedEvent = await Event.findByIdAndUpdate(eventId, dataToUpdate, {new: true})
+     return updatedEvent
+  }
+  catch(error){
+    console.log("Error in updating Event", error)
+  }
+}
+
+app.post("/events/:eventId", async(req, res)=>{
+  try{
+    const updatedEvent = await updateEvent(req.params.eventId, req.body)
+    if(updatedEvent){
+      res.status(200).json({message: 'Event updated successfully', updatedEvent: updatedEvent })
+    }else{
+      res.status(404).json({error: 'Event not found'})
+    }
+  }catch(error){
+     res.json(500).json({error: 'Failed to update event'})
+  }
+})
+
+
+
 const PORT = 3000
 
 app.listen(PORT, ()=>{
