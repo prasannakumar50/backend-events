@@ -97,7 +97,7 @@ async function readEventById(eventId) {
   }
 }
 
-app.get("/events/:eventId", async(req, res)=>{
+app.get("/events/id/:eventId", async(req, res)=>{
   try{
     const event = await readEventById(req.params.eventId)
     if(event){
