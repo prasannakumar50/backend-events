@@ -1,8 +1,13 @@
 const express = require('express')
+const cors = require('cors') 
 const app = express();
 const {initializeDatabase} =  require("./db/db.connect")
 const Event = require("./models/event.models")
 
+
+app.use(cors({
+  origin: 'https://vf3m4g.csb.app',  // **Changed this to your frontend URL**
+}));
 
 app.use(express.json())
 
